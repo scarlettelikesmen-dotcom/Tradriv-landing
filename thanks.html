@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tradriv — You're In.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080808;
+    --surface: #111;
+    --border: #1a1a1a;
+    --border2: #242424;
+    --text: #ede9e0;
+    --muted: #555;
+    --green: #34d399;
+    --green-dim: #34d39915;
+    --green-mid: #34d39930;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* GLOW */
+  .glow {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #34d39918 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glow-bottom {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #818cf808 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* CONTENT */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* CHECK ICON */
+  .check-wrap {
+    margin-bottom: 40px;
+    animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  .check-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--green-dim);
+    border: 1px solid var(--green-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* LOGO */
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  /* HEADLINE */
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    animation: fadeUp 0.5s 0.1s ease both;
+  }
+
+  h1 em { font-style: normal; color: var(--green); }
+
+  .subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 48px;
+    animation: fadeUp 0.5s 0.2s ease both;
+  }
+
+  .subtitle strong { color: var(--text); font-weight: 400; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 40px;
+    animation: fadeUp 0.5s 0.3s ease both;
+  }
+
+  /* SOCIAL LABEL */
+  .social-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    animation: fadeUp 0.5s 0.35s ease both;
+  }
+
+  /* SOCIAL LINKS */
+  .socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.5s 0.4s ease both;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+
+  .social-link:hover {
+    border-color: var(--green);
+    color: var(--text);
+    background: var(--green-dim);
+  }
+
+  .social-link svg { flex-shrink: 0; }
+
+  .social-handle {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* BACK LINK */
+  .back-link {
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    animation: fadeUp 0.5s 0.5s ease both;
+    display: inline-block;
+  }
+
+  .back-link:hover { color: var(--text); }
+
+  /* FOOTER */
+  .footer-text {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.55rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .socials { gap: 8px; }
+    .social-link { padding: 9px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="glow-bottom"></div>
+
+<div class="wrap">
+
+  <div class="logo">Tradriv</div>
+
+  <div class="check-wrap">
+    <div class="check-circle">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <polyline points="6,14 11,19 22,8" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <h1>You're in.<br/><em>Early.</em></h1>
+
+  <p class="subtitle">
+    Most traders will find out about Tradriv when it drops.<br/>
+    <strong>You already know.</strong><br/><br/>
+    We'll hit your inbox the moment we launch — before anyone else.<br/>
+    Until then, follow along. Watch it get built.
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="social-label">Follow the build</div>
+
+  <div class="socials">
+    <a class="social-link" href="https://x.com/tradriv.app" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+      <span class="social-handle">@tradriv.app</span>
+    </a>
+
+    <a class="social-link" href="https://instagram.com/tradriv.app" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      <span class="social-handle">@tradriv.app</span>
+    </a>
+
+    <a class="social-link" href="https://tiktok.com/@tradriv.app" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/>
+      </svg>
+      <span class="social-handle">@tradriv.app</span>
+    </a>
+  </div>
+
+  <a class="back-link" href="/">← Back to tradriv.in</a>
+
+</div>
+
+<div class="footer-text">© 2025 Tradriv. Discipline over PnL. Period.</div>
+
+</body>
+</html>
