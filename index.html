@@ -511,6 +511,9 @@
       document.getElementById('success-msg-2').classList.add('show');
       updateCounter();
     } catch(e) {
+     setTimeout(() => {
+  window.location.href = 'thanks.html';
+}, 1200);
       document.getElementById('error-msg-2').classList.add('show');
       btn.disabled = false; btn.textContent = 'Pre-register';
     }
