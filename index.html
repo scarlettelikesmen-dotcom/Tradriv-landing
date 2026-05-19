@@ -66,15 +66,6 @@
     backdrop-filter: blur(16px);
   }
 
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text);
-  }
-
   .nav-tag {
     font-size: 0.6rem;
     letter-spacing: 0.15em;
@@ -154,7 +145,7 @@
     animation: fadeUp 0.6s 0.3s ease both;
   }
 
-  .form-wrap form {
+  .form-row {
     display: flex;
     border: 1px solid var(--border2);
     border-radius: 8px;
@@ -163,12 +154,12 @@
     transition: border-color 0.2s;
   }
 
-  .form-wrap form:focus-within {
+  .form-row:focus-within {
     border-color: var(--green);
     box-shadow: 0 0 0 3px var(--green-dim);
   }
 
-  .form-wrap input[type="email"] {
+  .form-row input {
     flex: 1;
     background: none;
     border: none;
@@ -180,9 +171,9 @@
     letter-spacing: 0.02em;
   }
 
-  .form-wrap input[type="email"]::placeholder { color: var(--muted); }
+  .form-row input::placeholder { color: var(--muted); }
 
-  .form-wrap button[type="submit"] {
+  .form-row button {
     background: var(--green);
     border: none;
     padding: 14px 22px;
@@ -197,8 +188,9 @@
     white-space: nowrap;
   }
 
-  .form-wrap button[type="submit"]:hover { background: #5eead4; }
-  .form-wrap button[type="submit"]:active { transform: scale(0.98); }
+  .form-row button:hover { background: #5eead4; }
+  .form-row button:active { transform: scale(0.98); }
+  .form-row button:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .form-note {
     font-size: 0.58rem;
@@ -207,6 +199,33 @@
     margin-top: 12px;
     text-align: center;
   }
+
+  .success-msg {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    background: var(--green-dim);
+    border: 1px solid var(--green-mid);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+
+  .success-msg.show { display: flex; }
+
+  .error-msg {
+    display: none;
+    font-size: 0.62rem;
+    color: #f87171;
+    margin-top: 8px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .error-msg.show { display: block; }
 
   .counter-wrap {
     margin-top: 48px;
@@ -238,24 +257,10 @@
   .avatar.a2 { background: #1a1f3a; color: #818cf8; }
   .avatar.a3 { background: #2d1f1f; color: #f87171; }
 
-  .divider {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
+  .divider { position: relative; z-index: 1; width: 100%; max-width: 900px; margin: 0 auto; padding: 0 24px; }
   .divider-line { height: 1px; background: var(--border); }
 
-  .features {
-    position: relative;
-    z-index: 1;
-    padding: 80px 24px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .features { position: relative; z-index: 1; padding: 80px 24px; max-width: 900px; margin: 0 auto; }
 
   .features-label {
     font-size: 0.6rem;
@@ -276,12 +281,7 @@
     overflow: hidden;
   }
 
-  .feature {
-    background: var(--bg);
-    padding: 28px 24px;
-    transition: background 0.2s;
-  }
-
+  .feature { background: var(--bg); padding: 28px 24px; transition: background 0.2s; }
   .feature:hover { background: var(--surface); }
 
   .feature-num {
@@ -293,27 +293,10 @@
     margin-bottom: 14px;
   }
 
-  .feature-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
+  .feature-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+  .feature-desc { font-size: 0.7rem; color: var(--muted); line-height: 1.7; }
 
-  .feature-desc {
-    font-size: 0.7rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .cta-bottom {
-    position: relative;
-    z-index: 1;
-    padding: 80px 24px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-  }
+  .cta-bottom { position: relative; z-index: 1; padding: 80px 24px; text-align: center; border-top: 1px solid var(--border); }
 
   .cta-bottom h2 {
     font-family: 'Syne', sans-serif;
@@ -323,12 +306,7 @@
     letter-spacing: -0.01em;
   }
 
-  .cta-bottom p {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-bottom: 24px;
-    line-height: 1.7;
-  }
+  .cta-bottom p { font-size: 0.75rem; color: var(--muted); margin-bottom: 24px; line-height: 1.7; }
 
   .rr-line {
     display: inline-block;
@@ -352,20 +330,7 @@
     justify-content: space-between;
   }
 
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text);
-  }
-
-  .footer-text {
-    font-size: 0.58rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
+  .footer-text { font-size: 0.58rem; color: var(--muted); letter-spacing: 0.08em; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -374,8 +339,8 @@
 
   @media (max-width: 600px) {
     nav { padding: 16px 20px; }
-    .form-wrap form { flex-direction: column; border-radius: 8px; }
-    .form-wrap button[type="submit"] { border-radius: 0 0 6px 6px; padding: 13px; }
+    .form-row { flex-direction: column; border-radius: 8px; }
+    .form-row button { border-radius: 0 0 6px 6px; padding: 13px; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
@@ -385,7 +350,9 @@
 <div class="glow"></div>
 
 <nav>
-  <div class="logo">Tradriv</div>
+  <svg viewBox="0 0 220 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:20px;width:auto">
+    <text font-family="'Syne',sans-serif" font-weight="300" font-size="18" letter-spacing="10" fill="#ede9e0" x="2" y="19">TRADRIV</text>
+  </svg>
   <div class="nav-tag">Pre-register open</div>
 </nav>
 
@@ -402,13 +369,18 @@
   </p>
 
   <div class="form-wrap">
-    <form action="https://formsubmit.co/hello.tradriv@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New Tradriv Pre-Registration!"/>
-      <input type="hidden" name="_captcha" value="false"/>
-      <input type="hidden" name="_next" value="https://tradriv.in/thanks"/>
-      <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required/>
-      <button type="submit">Pre-register</button>
-    </form>
+    <div class="form-row" id="form-row">
+      <input type="email" id="email-input" placeholder="your@email.com" autocomplete="email"/>
+      <button id="submit-btn" onclick="handleSubmit()">Pre-register</button>
+    </div>
+    <div class="success-msg" id="success-msg">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <circle cx="7" cy="7" r="6.5" stroke="#34d399"/>
+        <polyline points="4,7 6,9 10,5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      You're on the list. We'll reach out first.
+    </div>
+    <div class="error-msg" id="error-msg">Something went wrong. Try again.</div>
     <div class="form-note">No spam. Just your early access link when we launch.</div>
   </div>
 
@@ -418,7 +390,7 @@
       <div class="avatar a2">R</div>
       <div class="avatar a3">A</div>
     </div>
-    <span>Join traders already on the waitlist</span>
+    <span id="counter-text">Join traders already on the waitlist</span>
   </div>
 </section>
 
@@ -437,7 +409,7 @@
     <div class="feature">
       <div class="feature-num">02</div>
       <div class="feature-title">AI coach that actually knows you</div>
-      <div class="feature-desc">We know exactly what's popping in your head — why would I use yours when I can use ChatGPT? Here's where we come in. Our AI knows your full trade history, your behaviour, and most importantly your edge. Ask ChatGPT should you enter off a 1m inversion or wait for CISD — it'll tell you to enter off resistance.</div>
+      <div class="feature-desc">We know exactly what's popping in your head — why would I use yours when I can use ChatGPT? Our AI knows your full trade history, your behaviour, and most importantly your edge. Ask ChatGPT should you enter off a 1m inversion or wait for CISD — it'll tell you to enter off resistance.</div>
     </div>
 
     <div class="feature">
@@ -461,21 +433,94 @@
   <div class="rr-line">You have nothing to lose. Honestly, the RR here is 0:10.</div>
 
   <div class="form-wrap" style="margin: 0 auto;">
-    <form action="https://formsubmit.co/hello.tradriv@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New Tradriv Pre-Registration!"/>
-      <input type="hidden" name="_captcha" value="false"/>
-      <input type="hidden" name="_next" value="https://tradriv.in/thanks"/>
-      <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required/>
-      <button type="submit">Pre-register</button>
-    </form>
+    <div class="form-row" id="form-row-2">
+      <input type="email" id="email-input-2" placeholder="your@email.com" autocomplete="email"/>
+      <button id="submit-btn-2" onclick="handleSubmit2()">Pre-register</button>
+    </div>
+    <div class="success-msg" id="success-msg-2">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <circle cx="7" cy="7" r="6.5" stroke="#34d399"/>
+        <polyline points="4,7 6,9 10,5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      You're on the list. We'll reach out first.
+    </div>
+    <div class="error-msg" id="error-msg-2">Something went wrong. Try again.</div>
     <div class="form-note">No spam. Just your early access link when we launch.</div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Tradriv</div>
+  <svg viewBox="0 0 220 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:16px;width:auto;opacity:0.5">
+    <text font-family="'Syne',sans-serif" font-weight="300" font-size="18" letter-spacing="10" fill="#ede9e0" x="2" y="19">TRADRIV</text>
+  </svg>
   <div class="footer-text">© 2025 Tradriv. Discipline over PnL. Period.</div>
 </footer>
 
+<script>
+  const SUPABASE_URL = 'https://roxoapzqfsjkeotobjyp.supabase.co';
+ const SUPABASE_ANON_KEY = 'sb_publishable_PanqxczXarPoEIzk-LEWTw_qK7xQcrQ';
+  const TABLE = 'waitlist';
+
+  function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+  async function submitEmail(email) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email })
+    });
+    if (!res.ok) throw new Error('Failed');
+  }
+
+  async function handleSubmit() {
+    const input = document.getElementById('email-input');
+    const btn = document.getElementById('submit-btn');
+    const email = input.value.trim();
+    document.getElementById('error-msg').classList.remove('show');
+    if (!isValidEmail(email)) { input.style.color = '#f87171'; setTimeout(() => { input.style.color = ''; }, 1000); return; }
+    btn.disabled = true; btn.textContent = 'Saving...';
+    try {
+      await submitEmail(email);
+      document.getElementById('form-row').style.display = 'none';
+      document.getElementById('success-msg').classList.add('show');
+      updateCounter();
+    } catch(e) {
+      document.getElementById('error-msg').classList.add('show');
+      btn.disabled = false; btn.textContent = 'Pre-register';
+    }
+  }
+
+  async function handleSubmit2() {
+    const input = document.getElementById('email-input-2');
+    const btn = document.getElementById('submit-btn-2');
+    const email = input.value.trim();
+    document.getElementById('error-msg-2').classList.remove('show');
+    if (!isValidEmail(email)) { input.style.color = '#f87171'; setTimeout(() => { input.style.color = ''; }, 1000); return; }
+    btn.disabled = true; btn.textContent = 'Saving...';
+    try {
+      await submitEmail(email);
+      document.getElementById('form-row-2').style.display = 'none';
+      document.getElementById('success-msg-2').classList.add('show');
+      updateCounter();
+    } catch(e) {
+      document.getElementById('error-msg-2').classList.add('show');
+      btn.disabled = false; btn.textContent = 'Pre-register';
+    }
+  }
+
+  function updateCounter() {
+    const count = parseInt(localStorage.getItem('tradriv_count') || '0') + 1;
+    localStorage.setItem('tradriv_count', count);
+    document.getElementById('counter-text').textContent = `${47 + count} traders already on the waitlist`;
+  }
+
+  document.getElementById('email-input').addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
+  document.getElementById('email-input-2').addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit2(); });
+</script>
 </body>
 </html>
