@@ -489,6 +489,9 @@
       document.getElementById('form-row').style.display = 'none';
       document.getElementById('success-msg').classList.add('show');
       updateCounter();
+     setTimeout(() => {
+  window.location.href = 'thanks.html';
+}, 1200);
     } catch(e) {
       document.getElementById('error-msg').classList.add('show');
       btn.disabled = false; btn.textContent = 'Pre-register';
